@@ -1,0 +1,38 @@
+scalar Date
+type Query {
+  comments: [Comment]
+  commentPage(commentPageLimit: CommentPageLimit): [Comment]
+}
+
+type Mutation {
+  createComment(createCommentInput: CreateCommentInput): Comment
+}
+
+type Comment {
+  id: String!
+  user: String
+  content: String!
+  isAnonymous: Boolean!
+  type: CommentType!
+  publishTime: Date
+}
+
+enum CommentType {
+  question
+  warning
+  info
+  suggestion
+}
+
+input CreateCommentInput {
+  user: String
+  content: String!
+  isAnonymous: Boolean!
+  type: CommentType!
+  publishTime: Date
+}
+
+input CommentPageLimit {
+  pageNumber: Int!
+  pageSize: Int!
+}

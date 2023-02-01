@@ -1,0 +1,36 @@
+scalar Date
+type Query {
+  getPostInfoPage(postPageLimit: PostPageLimit): PostPage
+  getPostContent(postFileName: PostFileName): String
+}
+
+type PostInfo {
+  name: String!
+  updateTime: Date
+  description: String
+  avatar: String
+  tags: [String]
+  type: PostType
+}
+
+type PostPage {
+  totalCount: Int
+  pageContent: [PostInfo]
+}
+
+enum PostType {
+  chat
+  data_Visualization
+}
+
+input PostPageLimit {
+  postType: PostType
+  searchKeyWord: String
+  sortType: Int
+  pageNumber: Int!
+  pageSize: Int!
+}
+
+input PostFileName {
+  name: String!
+}
